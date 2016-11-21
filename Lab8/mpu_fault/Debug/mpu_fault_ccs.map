@@ -1,0 +1,294 @@
+******************************************************************************
+                  TI ARM Linker PC v15.12.3                    
+******************************************************************************
+>> Linked Sun Oct 23 17:14:55 2016
+
+OUTPUT FILE NAME:   <mpu_fault.out>
+ENTRY POINT SYMBOL: "_c_int00"  address: 00000975
+
+
+MEMORY CONFIGURATION
+
+         name            origin    length      used     unused   attr    fill
+----------------------  --------  ---------  --------  --------  ----  --------
+  FLASH                 00000000   00040000  00000bf8  0003f408  R  X
+  SRAM                  20000000   00008000  00000130  00007ed0  RW X
+
+
+SEGMENT ALLOCATION MAP
+
+run origin  load origin   length   init length attrs members
+----------  ----------- ---------- ----------- ----- -------
+00000000    00000000    00000bfc   00000bfc    r-x
+  00000000    00000000    0000026c   0000026c    r-- .intvecs
+  0000026c    0000026c    00000938   00000938    r-x .text
+  00000ba4    00000ba4    00000018   00000018    r-- .const
+  00000bc0    00000bc0    0000003c   0000003c    r-- .cinit
+20000000    20000000    00000130   00000000    rw-
+  20000000    20000000    00000100   00000000    rw- .stack
+  20000100    20000100    00000020   00000000    rw- .data
+  20000120    20000120    00000010   00000000    rw- .bss
+
+
+SECTION ALLOCATION MAP
+
+ output                                  attributes/
+section   page    origin      length       input sections
+--------  ----  ----------  ----------   ----------------
+.intvecs   0    00000000    0000026c     
+                  00000000    0000026c     startup_ccs.obj (.intvecs)
+
+.text      0    0000026c    00000938     
+                  0000026c    00000268     mpu_fault.obj (.text:main)
+                  000004d4    000001ea     uartstdio.obj (.text:UARTvprintf)
+                  000006be    0000009c     rtsv7M4_T_le_v4SPD16_eabi.lib : memcpy_t2.obj (.text)
+                  0000075a    0000007a                                   : memset_t2.obj (.text)
+                  000007d4    00000070                                   : autoinit.obj (.text)
+                  00000844    0000006a                                   : copy_decompress_rle.obj (.text)
+                  000008ae    00000002     startup_ccs.obj (.text:FaultISR)
+                  000008b0    00000064     mpu_fault.obj (.text:ConfigureUART)
+                  00000914    00000060     uartstdio.obj (.text:UARTStdioConfig)
+                  00000974    00000054     rtsv7M4_T_le_v4SPD16_eabi.lib : boot.obj (.text)
+                  000009c8    00000054                                   : exit.obj (.text)
+                  00000a1c    0000004c                                   : cpy_tbl.obj (.text)
+                  00000a68    00000048     uartstdio.obj (.text:UARTwrite)
+                  00000ab0    00000040     mpu_fault.obj (.text:MPUFaultHandler)
+                  00000af0    00000040     rtsv7M4_T_le_v4SPD16_eabi.lib : u_divt2.obj (.text)
+                  00000b30    0000001a     uartstdio.obj (.text:UARTprintf)
+                  00000b4a    00000002     startup_ccs.obj (.text:IntDefaultHandler)
+                  00000b4c    00000018     rtsv7M4_T_le_v4SPD16_eabi.lib : args_main.obj (.text)
+                  00000b64    00000014                                   : _lock.obj (.text)
+                  00000b78    0000000e                                   : copy_decompress_none.obj (.text:decompress:none)
+                  00000b86    00000006     startup_ccs.obj (.text:ResetISR)
+                  00000b8c    00000006     driverlib.lib : uart.obj (.text:UARTClockSourceSet)
+                  00000b92    00000006     rtsv7M4_T_le_v4SPD16_eabi.lib : copy_decompress_rle.obj (.text:decompress:rle24)
+                  00000b98    00000004                                   : pre_init.obj (.text)
+                  00000b9c    00000002     startup_ccs.obj (.text:NmiSR)
+                  00000b9e    00000002     rtsv7M4_T_le_v4SPD16_eabi.lib : i_div0.obj (.text)
+                  00000ba0    00000002                                   : mpu_init.obj (.text)
+                  00000ba2    00000002                                   : startup.obj (.text)
+
+.const     0    00000ba4    00000018     
+                  00000ba4    0000000c     uartstdio.obj (.const:g_ui32UARTBase)
+                  00000bb0    0000000c     uartstdio.obj (.const:g_ui32UARTPeriph)
+
+.cinit     0    00000bc0    0000003c     
+                  00000bc0    00000016     (.cinit..data.load) [load image, compression = rle]
+                  00000bd6    00000002     --HOLE-- [fill = 0]
+                  00000bd8    00000009     (.cinit..bss.load) [load image, compression = rle]
+                  00000be1    00000003     --HOLE-- [fill = 0]
+                  00000be4    00000008     (__TI_handler_table)
+                  00000bec    00000010     (__TI_cinit_table)
+
+.init_array 
+*          0    00000000    00000000     UNINITIALIZED
+
+.stack     0    20000000    00000100     UNINITIALIZED
+                  20000000    00000100     --HOLE--
+
+.data      0    20000100    00000020     UNINITIALIZED
+                  20000100    0000000c     rtsv7M4_T_le_v4SPD16_eabi.lib : exit.obj (.data:$O1$$)
+                  2000010c    00000008                                   : _lock.obj (.data:$O1$$)
+                  20000114    00000005     uartstdio.obj (.data)
+                  20000119    00000003     --HOLE--
+                  2000011c    00000004     rtsv7M4_T_le_v4SPD16_eabi.lib : stkdepth_vars.obj (.data)
+
+.bss       0    20000120    00000010     UNINITIALIZED
+                  20000120    00000010     mpu_fault.obj (.bss)
+
+MODULE SUMMARY
+
+       Module                     code   ro data   rw data
+       ------                     ----   -------   -------
+    .\
+       mpu_fault.obj              780    0         16     
+       startup_ccs.obj            12     620       0      
+    +--+--------------------------+------+---------+---------+
+       Total:                     792    620       16     
+                                                          
+    .\utils\
+       uartstdio.obj              684    24        5      
+    +--+--------------------------+------+---------+---------+
+       Total:                     684    24        5      
+                                                          
+    C:/ti/TivaWare_C_Series-2.1.3.156/driverlib/ccs/Debug/driverlib.lib
+       uart.obj                   6      0         0      
+    +--+--------------------------+------+---------+---------+
+       Total:                     6      0         0      
+                                                          
+    C:\ti\ccsv6\tools\compiler\arm_15.12.3.LTS\lib\rtsv7M4_T_le_v4SPD16_eabi.lib
+       memcpy_t2.obj              156    0         0      
+       memset_t2.obj              122    0         0      
+       autoinit.obj               112    0         0      
+       copy_decompress_rle.obj    112    0         0      
+       exit.obj                   84     0         12     
+       boot.obj                   84     0         0      
+       cpy_tbl.obj                76     0         0      
+       u_divt2.obj                64     0         0      
+       _lock.obj                  20     0         8      
+       args_main.obj              24     0         0      
+       copy_decompress_none.obj   14     0         0      
+       pre_init.obj               4      0         0      
+       stkdepth_vars.obj          0      0         4      
+       i_div0.obj                 2      0         0      
+       mpu_init.obj               2      0         0      
+       startup.obj                2      0         0      
+    +--+--------------------------+------+---------+---------+
+       Total:                     878    0         24     
+                                                          
+       Stack:                     0      0         256    
+       Linker Generated:          0      55        0      
+    +--+--------------------------+------+---------+---------+
+       Grand Total:               2360   699       301    
+
+
+LINKER GENERATED COPY TABLES
+
+__TI_cinit_table @ 00000bec records: 2, size/record: 8, table size: 16
+	.data: load addr=00000bc0, load size=00000016 bytes, run addr=20000100, run size=00000020 bytes, compression=rle
+	.bss: load addr=00000bd8, load size=00000009 bytes, run addr=20000120, run size=00000010 bytes, compression=rle
+
+
+LINKER GENERATED HANDLER TABLE
+
+__TI_handler_table @ 00000be4 records: 2, size/record: 4, table size: 8
+	index: 0, handler: __TI_decompress_rle24
+	index: 1, handler: __TI_decompress_none
+
+
+GLOBAL SYMBOLS: SORTED ALPHABETICALLY BY Name 
+
+address   name                           
+-------   ----                           
+000009c9  C$$EXIT                        
+000008b1  ConfigureUART                  
+00000ab1  MPUFaultHandler                
+00000b87  ResetISR                       
+UNDEFED   SHT$$INIT_ARRAY$$Base          
+UNDEFED   SHT$$INIT_ARRAY$$Limit         
+00000b8d  UARTClockSourceSet             
+00000915  UARTStdioConfig                
+00000b31  UARTprintf                     
+000004d5  UARTvprintf                    
+00000a69  UARTwrite                      
+20000100  __STACK_END                    
+00000100  __STACK_SIZE                   
+20000100  __STACK_TOP                    
+00000bec  __TI_CINIT_Base                
+00000bfc  __TI_CINIT_Limit               
+00000be4  __TI_Handler_Table_Base        
+00000bec  __TI_Handler_Table_Limit       
+000007d5  __TI_auto_init                 
+20000100  __TI_cleanup_ptr               
+00000b79  __TI_decompress_none           
+00000b93  __TI_decompress_rle24          
+20000104  __TI_dtors_ptr                 
+20000108  __TI_enable_exit_profile_output
+ffffffff  __TI_pprof_out_hndl            
+ffffffff  __TI_prof_data_size            
+ffffffff  __TI_prof_data_start           
+00000000  __TI_static_base__             
+00000b9f  __aeabi_idiv0                  
+0000075b  __aeabi_memclr                 
+0000075b  __aeabi_memclr4                
+0000075b  __aeabi_memclr8                
+000006bf  __aeabi_memcpy                 
+000006bf  __aeabi_memcpy4                
+000006bf  __aeabi_memcpy8                
+0000075d  __aeabi_memset                 
+0000075d  __aeabi_memset4                
+0000075d  __aeabi_memset8                
+00000af1  __aeabi_uidiv                  
+00000af1  __aeabi_uidivmod               
+ffffffff  __binit__                      
+ffffffff  __c_args__                     
+00000ba1  __mpu_init                     
+20000000  __stack                        
+00000b4d  _args_main                     
+00000975  _c_int00                       
+2000010c  _lock                          
+00000b73  _nop                           
+00000b6b  _register_lock                 
+00000b65  _register_unlock               
+00000ba3  _system_post_cinit             
+00000b99  _system_pre_init               
+20000110  _unlock                        
+000009cd  abort                          
+ffffffff  binit                          
+00000a1d  copy_in                        
+000009d5  exit                           
+00000000  g_pfnVectors                   
+0000026d  main                           
+2000011c  main_func_sp                   
+000006bf  memcpy                         
+00000763  memset                         
+
+
+GLOBAL SYMBOLS: SORTED BY Symbol Address 
+
+address   name                           
+-------   ----                           
+00000000  __TI_static_base__             
+00000000  g_pfnVectors                   
+00000100  __STACK_SIZE                   
+0000026d  main                           
+000004d5  UARTvprintf                    
+000006bf  __aeabi_memcpy                 
+000006bf  __aeabi_memcpy4                
+000006bf  __aeabi_memcpy8                
+000006bf  memcpy                         
+0000075b  __aeabi_memclr                 
+0000075b  __aeabi_memclr4                
+0000075b  __aeabi_memclr8                
+0000075d  __aeabi_memset                 
+0000075d  __aeabi_memset4                
+0000075d  __aeabi_memset8                
+00000763  memset                         
+000007d5  __TI_auto_init                 
+000008b1  ConfigureUART                  
+00000915  UARTStdioConfig                
+00000975  _c_int00                       
+000009c9  C$$EXIT                        
+000009cd  abort                          
+000009d5  exit                           
+00000a1d  copy_in                        
+00000a69  UARTwrite                      
+00000ab1  MPUFaultHandler                
+00000af1  __aeabi_uidiv                  
+00000af1  __aeabi_uidivmod               
+00000b31  UARTprintf                     
+00000b4d  _args_main                     
+00000b65  _register_unlock               
+00000b6b  _register_lock                 
+00000b73  _nop                           
+00000b79  __TI_decompress_none           
+00000b87  ResetISR                       
+00000b8d  UARTClockSourceSet             
+00000b93  __TI_decompress_rle24          
+00000b99  _system_pre_init               
+00000b9f  __aeabi_idiv0                  
+00000ba1  __mpu_init                     
+00000ba3  _system_post_cinit             
+00000be4  __TI_Handler_Table_Base        
+00000bec  __TI_CINIT_Base                
+00000bec  __TI_Handler_Table_Limit       
+00000bfc  __TI_CINIT_Limit               
+20000000  __stack                        
+20000100  __STACK_END                    
+20000100  __STACK_TOP                    
+20000100  __TI_cleanup_ptr               
+20000104  __TI_dtors_ptr                 
+20000108  __TI_enable_exit_profile_output
+2000010c  _lock                          
+20000110  _unlock                        
+2000011c  main_func_sp                   
+ffffffff  __TI_pprof_out_hndl            
+ffffffff  __TI_prof_data_size            
+ffffffff  __TI_prof_data_start           
+ffffffff  __binit__                      
+ffffffff  __c_args__                     
+ffffffff  binit                          
+UNDEFED   SHT$$INIT_ARRAY$$Base          
+UNDEFED   SHT$$INIT_ARRAY$$Limit         
+
+[62 symbols]
